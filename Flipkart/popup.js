@@ -65,24 +65,19 @@ function addBookmark() {
     statusDisplay.innerHTML = 'Saving...';
 }
 
-window.onload = function() {
-    //
-};
+// Avoid recursive frame insertion...
+var extensionOrigin = 'chrome-extension://' + chrome.runtime.id;
+if (!location.ancestorOrigins.contains(extensionOrigin)) {
+    var height = '300px'
+    var width = '300px'
+    var url = chrome.extension.getURL("frame.html");
+    var iframe = "<iframe src=" + url + " id=myFirstToolbar123" + "></iframe>"
+    //var iframe = document.createElement('iframe');
+    // Must be declared at web_accessible_resources in manifest.json
+    //iframe.src = chrome.runtime.getURL('frame.html');
 
-// When the popup HTML has loaded
-window.addEventListener('load', function(evt) {
-    // Cache a reference to the status display SPAN
-    statusDisplay = document.getElementById('status-display');
-    // Handle the bookmark form submit event with our addBookmark function
-    document.getElementById('addbookmark')
-        .addEventListener('submit', addBookmark);
-    // Get the event page
-    chrome.runtime.getBackgroundPage(function(eventPage) {
-        // Call the getPageInfo function in the event page, passing in
-        // our onPageDetailsReceived function as the callback. This
-        // injects content.js into the current tab's HTML
-        eventPage.getPageDetails(onPageDetailsReceived);
-    });
-
-
-});
+    // Some styles for a fancy sidebar
+    iframe.style.cssText = 'position:fixed;top:0;left:0;display:block;' +
+        'width:300px;height:100%;z-index:1000;';
+    document.body.appendChild(iframe);
+}
