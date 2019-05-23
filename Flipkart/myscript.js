@@ -18,7 +18,7 @@ if (query == "" || query==undefined){
 }
 
 if (query !== "" && query!==undefined){
-    var height = '100px'
+    var height = '80px'
     //alert("calling: "+ 'https://www.google.com/search?igu=1&q=' +query)
     //var url = chrome.extension.getURL('https://www.google.com/search?igu=1&q=' +query);
     var url = chrome.extension.getURL("https://0.0.0.0:5000/get_product_toolbar?q=" + query);
