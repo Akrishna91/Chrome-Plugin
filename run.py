@@ -140,5 +140,5 @@ if __name__ == "__main__":
     fill_product_static()
     app = create_app("config")
 
-    context = ('/Users/dhruv.pancholi/hackday/search_hack_fk/cert.pem', '/Users/dhruv.pancholi/hackday/search_hack_fk/key.pem')
+    #context = ('/Users/dhruv.pancholi/hackday/search_hack_fk/cert.pem', '/Users/dhruv.pancholi/hackday/search_hack_fk/key.pem')
     app.run(debug=True, use_reloader=True, host="0.0.0.0",  ssl_context=context)
