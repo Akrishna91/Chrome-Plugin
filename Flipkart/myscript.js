@@ -16,7 +16,6 @@ if (query == "" || query==undefined){
 if (query == "" || query==undefined){
     query = $('[name="search_query"]').val();
 }
-alert(query)
 
 if (query !== "" && query!==undefined){
     var height = '100px'
