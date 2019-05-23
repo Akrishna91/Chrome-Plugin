@@ -9,29 +9,16 @@
 
 var query = $('[name="q"]').val();
 
-// var xhr = new XMLHttpRequest();
-// xhr.open('GET', 'https://i.imgur.com', true);
-// xhr.setRequestHeader("dataType",'json');
-// xhr.setRequestHeader('responseType','application/json');
-// xhr.setRequestHeader('Access-Control-Allow-Credentials' , 'true');
-// xhr.setRequestHeader('Access-Control-Allow-Origin','*');
-// xhr.setRequestHeader('Access-Control-Allow-Methods','GET');
-// xhr.setRequestHeader('Access-Control-Allow-Headers','application/json');
-// xhr.responseType = 'blob';
-// xhr.onload = function(e) {
-//     var height = '100px'
-//     var img = document.createElement('img');
-//     img.src = window.URL.createObjectURL(this.response);
-//     $('html').append(img)
-//
-//     $('body').css({
-//         '-webkit-transform': 'translateY('+height+')'
-//     });
-// };
+if (query == "" || query==undefined){
+    query = $('[name="k"]').val();
+}
 
-//xhr.send();
+if (query == "" || query==undefined){
+    query = $('[name="search_query"]').val();
+}
+alert(query)
 
-if (query != ""){
+if (query !== "" && query!==undefined){
     var height = '100px'
     //alert("calling: "+ 'https://www.google.com/search?igu=1&q=' +query)
     //var url = chrome.extension.getURL('https://www.google.com/search?igu=1&q=' +query);
