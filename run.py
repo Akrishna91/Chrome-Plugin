@@ -7,6 +7,7 @@ import json
 import requests
 import webbrowser
 import re
+import urllib
 
 app = Flask(__name__)
 Bootstrap(app)
@@ -76,7 +77,8 @@ def get_image(fsn_list):
 @app.route('/get_product_toolbar')
 def get_product_toolbar():
     q = request.args.get('q')
-    searchUrl = "https://www.flipkart.com/search?q="+q+"&marketplace=FLIPKART&sid=search.flipkart.com"
+    q_encoded = urllib.parse.quote(q)
+    searchUrl = "https://www.flipkart.com/search?q="+q_encoded+"&marketplace=FLIPKART&sid=search.flipkart.com"
     headers = {
         'X-user-agent': 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Mobile Safari/537.36 FKUA/msite/0.0.1/msite/Mobile',
         'Referer': searchUrl,
@@ -145,6 +147,13 @@ def search_fk():
     webbrowser.open_new_tab("https://www.flipkart.com/search?q="+ query)
     return redirect(url_for('get_products'))
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('error.html'), 404
+
+@app.errorhandler(Exception)
+def page_not_found(e):
+    return render_template('error.html'), 500
 
 if __name__ == "__main__":
     fill_product_static()

@@ -16,8 +16,10 @@ if (query == "" || query==undefined){
 if (query == "" || query==undefined){
     query = $('[name="search_query"]').val();
 }
-
+query = query.replace(/["']/g, "").toLowerCase()
+query = query.replace(/\b(?:the|it is|we all|an?|by|to|you|[mh]e|she|they|we|review|show)\b/ig, '');
 if (query !== "" && query!==undefined){
+
     var height = '80px'
     //alert("calling: "+ 'https://www.google.com/search?igu=1&q=' +query)
     //var url = chrome.extension.getURL('https://www.google.com/search?igu=1&q=' +query);
@@ -26,7 +28,7 @@ if (query !== "" && query!==undefined){
     var iframe = "<iframe src=" + url + " id=myFirstToolbar123 style='height: " + height + "'></iframe>"
     //var iframe = "<img src=" + "clock.png" + " id=myFirstToolbar123 style='height: " + height + "'/>"
 
-    $('html').append(iframe)
+    //$('html').append(iframe)
 
     // var url = chrome.extension.getURL('toolbar.html');
     // var iframe = "<iframe src=" + url + " id=myFirstToolbar123 style='height: " + height + "'></iframe>"
